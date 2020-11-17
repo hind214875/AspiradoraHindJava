@@ -37,6 +37,7 @@ public class Menu {
                 "7. estado general\n" +
                 "8. base de carga\n" +
                 "9. salir\n");
+         JOptionPane.showInputDialog("la primera opción tiene que ser configuracion del sistema\n" );
         opcion=Integer.parseInt(op);
         switch(opcion){
             case 1:
