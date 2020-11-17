@@ -37,10 +37,16 @@ public class Menu {
                 "7. estado general\n" +
                 "8. base de carga\n" +
                 "9. salir\n");
-         JOptionPane.showInputDialog("la primera opción tiene que ser configuracion del sistema\n" );
+         JOptionPane.showInputDialog("la primera opción tiene que ser configuracion del sistema\n" );// is obligatory to choose first option first befor anything for giving the information 
         opcion=Integer.parseInt(op);
         switch(opcion){
             case 1:
+                JOptionPane.showInputDialog("by default you house have por defecto tu casa tiene\n: 1 cocina ,1 sala ,1 cuarto de baño ,2 dormitorios \n"
+                        + "quieres cambialo " ,JOptionPane.YES_NO_OPTION );
+                
+                //if (){
+                    
+              
                 // the user have to enter a nbr of metros between 1 && 100
                   for (int k=0;k<habitacionsM.length;k++){        
                         for (i=0;i<habitacion.length;i++){ 
@@ -52,7 +58,11 @@ public class Menu {
                         }                           
                
                     } 
-                
+                  //}
+               // else  {
+                    
+               // }
+              
                           
             case 2:
                // CARGA Establishes the level of the battery (between 0 and 100)
@@ -87,25 +97,30 @@ Modo completo. En este modo, la aspiradora limpia el piso entero. El robot va li
                 x=Integer.parseInt(num);
                
                   
-                 for (i=0;i<habPermanente.length;i++){ 
-                         String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");
+                 for (i=0;i<x;i++){ 
+                         String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
                           habPermanente[x]=String.valueOf(h);
-                       for(int j=0;j<habPermanenteM.length;j++){ 
+                       for(int j=0;j<x;j++){ 
                          
                           habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
                              limpiarNeedCharge=habPermanenteM[i]*0.15;
+                             
                                while(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
                                }
                         }
                                                                  
                     }
-                      cargaActual=0;
-                      limpiarNeedCharge=0;
+                      cargaActual=limpiarNeedCharge;
                       break;
                 
                 
             case 5:
+                //   "5. aspiracion y fregado completo\n" 
+                /*The vacuum cleaner cleans the whole house. The robot is going to clean rooms in function of the battery 
+                remaining. If the robot enters a room and it doesn’t have sufficient battery to clean it the robot stops
+                and informs the user that it can’t finish and informs of which rooms it has cleaned so far.
+*/
                 for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
                         
                         for(int m=0;m<habitacionsM.length;m++){ //loop for habitaciones metters
