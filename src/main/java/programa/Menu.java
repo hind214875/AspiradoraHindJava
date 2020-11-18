@@ -88,7 +88,9 @@ public class Menu {
             
           case 3:    
               /*ASPIRACIÓN.
-Modo completo. En este modo, la aspiradora limpia el piso entero. El robot va limpiando habitaciones en función de su batería. Si al entrar en una habitación no le llega la batería para poder completarla entonces la aspiradora se para e informa al usuario que no puede terminar y también informa de las dependencias que ha podido limpiar. */  
+Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va limpiando habitaciones en función de su batería. 
+              Si al entrar en una habitación no le llega la batería para poder completarla entonces la aspiradora se para
+              e informa al usuario que no puede terminar y también informa de las dependencias que ha podido limpiar. */  
                    
               for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
                         
