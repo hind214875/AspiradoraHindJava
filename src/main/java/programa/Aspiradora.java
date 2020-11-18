@@ -1,4 +1,3 @@
-      
 package programa;
 
 import java.awt.event.ActionEvent;
@@ -24,8 +23,7 @@ public class Aspiradora implements ActionListener {
     private static JLabel message;
     private static JPasswordField Contraseña;
     
-    
-    
+   
     public static void main(String[] args) {
         JPanel panel=new JPanel();
         JFrame frame=new JFrame();
@@ -90,7 +88,7 @@ public class Aspiradora implements ActionListener {
                }
        
   
-   
+  
     
     
 }

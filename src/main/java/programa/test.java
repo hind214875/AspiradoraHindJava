@@ -12,7 +12,7 @@ public class test {
          int i;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
-         double[] habitacionsM= {50,50,39,29,48};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
+         double[] habitacionsM= {5,5,3,2,4};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
          double cargaEstablecida=100;// value charge the user enter in first opcion "configuration del sistema"
          double limpiarNeedCharge=0;//equation to know how much charge the aspiradora losted dependce the M of the habitacion
          double cargaActual;//the value of charge after cleaning
@@ -37,24 +37,24 @@ public class test {
               //loops for the 2 listes and inside i count how much charge aspiradora need every time enter in a new room 
                //then i compare the charge it have with "cargadaEstablecida" the charge the user enter if the charge it need for this room 
                //more > bigger than the charge she have then i show error msg if else i show the habitacion cleaned
-                JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo completo "); 
+                JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo completo"
+                        + ""); 
                 while(cargaEstablecida>3){
-                   
+                 
                     for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
-                           for(int m=0;m<habitacionsM.length;m++){
+                             for(int m=0;m<habitacionsM.length;m++){
                                limpiarNeedCharge=habitacionsM[m]*0.15;
                                if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
-                                   JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
-                                           + "aspiradora se detuvo en esta habitación" + habitacion[j] ,JOptionPane.ERROR_MESSAGE);               
+                                   JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
+                                           + "aspiradora se detuvo en esta habitación" + habitacion[j] );               
                                 }
                                else{
-                                  JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado"); 
-                                 
-                               }
-                        limpiarNeedCharge+=limpiarNeedCharge;
-                      } 
+                                  JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
+                                   }
+                        
+                      }
+                           limpiarNeedCharge+=limpiarNeedCharge;
                 }
-                    
                       cargaActual=cargaEstablecida-limpiarNeedCharge; 
                       JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;
