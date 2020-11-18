@@ -64,7 +64,7 @@ public class test {
                       cargaActual=RestCharge;
                       limpiarNeedCharge=0;
                       RestCharge=0;*/
-       
+       /*
                 String num = JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
                 x=Integer.parseInt(num);
               if (x<5) { 
@@ -95,6 +95,9 @@ public class test {
                          }
                      cargaActual=RestCharge;
                       limpiarNeedCharge=0;
-                      RestCharge=0;    
+                      RestCharge=0;    */
+       
+       
+       
    }
 }

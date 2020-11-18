@@ -16,7 +16,7 @@ public class Menu {
 
     public static void main(String[] args) {
         double NmrEstancia;
-         int i;
+         int i = 0;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
          double[] habitacionsM= new double[5];//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
@@ -24,6 +24,7 @@ public class Menu {
          double limpiarNeedCharge=0;// how much charge needing for cleaning the room where is the aspiradora now
          double cargaActual;//the value of charge after cleaning
          int x=0;
+         int k;
          double[] habPermanenteM= new double[x];//the permanent list for stocking the metros of habitacions that a user will choose, for "modo dependencias"
          String[] habPermanente= new String[x];
          String aspiraPlace="";//the place where is the aspiradora now 
@@ -55,29 +56,35 @@ public class Menu {
                 opcion=Integer.parseInt(op);
         switch(opcion){   
                      
-            case 1:
-                      
+            case 1:             
                 // the user have to enter a nbr of metros between 1 && 100
-            for (int k=0;k<habitacionsM.length;k++){
-                for (i=0;i<habitacion.length;i++){ 
-                   habitacionsM[k]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habitacion[i] + "," + " entre 1 y 100m: "));                  
-                    MettersCasa+=habitacionsM[k];
-                   if((habitacionsM[k]<1 || habitacionsM[k]>100)){
-                  }
-                   JOptionPane.showMessageDialog( null, "ErrorMsg", "Invalid Metros input", JOptionPane.ERROR_MESSAGE); 
-                 
+                /*loop taking mettres of every habitation and stocke it in ARRAY "habitacionM " 
+                then inside the loop i put the condition if the numero of metters <1 or >100 
+                the program show Error msg */
+                for (k=0;k<habitacionsM.length;k++){
+                     habitacionsM[k]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + (k+1) + "," + " entre 1 y 100m: "));                                   
+                    
+                          while((habitacionsM[k]<1 || habitacionsM[k]>100)){ 
+                           JOptionPane.showMessageDialog( null, "Entrada de medidores no válida", "ErrorMsg", JOptionPane.ERROR_MESSAGE); 
+                           JOptionPane.showMessageDialog(null,"ingrese un número válido, los metros deben ingresar 1 y 100");
+                            k=1; 
+                          }  
+                           
+                            MettersCasa+=habitacionsM[k]; //operacion para saber cuando metros en la casa        
                 } 
-                         
-                    }
-     
+                                               
             case 2:
                // CARGA Establishes the level of the battery (between 0 and 100)
              String carga =JOptionPane.showInputDialog("Indica el nivel de carga del aspirador 0%...100%");
                cargaEstablecida=Double.parseDouble(carga);
+               
+               // condition to check if the level of charge <0 or >100 then i show the error msg
               while(cargaEstablecida<0 || cargaEstablecida>100){ 
-              JOptionPane.showInputDialog(null,"Indica de nuevo el nivel de carga del aspirador 0%...100%",JOptionPane.ERROR_MESSAGE);   
+              carga=JOptionPane.showInputDialog(null,"Indica de nuevo el nivel de carga del aspirador 0%...100%",JOptionPane.ERROR_MESSAGE);   
                   cargaEstablecida=Double.parseDouble(carga);
               }
+                  JOptionPane.showMessageDialog(null,"tu insperadora tiene\n" + cargaEstablecida + "%" + " " + "de carga" );
+               
             
           case 3:    
               /*ASPIRACIÓN.
@@ -154,7 +161,37 @@ Modo completo. En este modo, la aspiradora limpia el piso entero. El robot va li
                       RestCharge=0;
                       
             case 6:
-                
+                        num = JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
+                x=Integer.parseInt(num);
+              if (x<5) { 
+                          String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");
+                          
+                 for (i=0;i<habitacion.length;i++){ 
+                         habPermanente[x]=String.valueOf(h);
+                       for(int j=0;j<habPermanenteM.length;j++){ 
+                         
+                             habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
+                             limpiarNeedCharge=habPermanenteM[j]*2.25;
+                             RestCharge=cargaEstablecida-limpiarNeedCharge;
+                             
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                                   JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
+                               }
+                                else if(RestCharge<=3){
+                                       JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga es menos de 3%",JOptionPane.ERROR_MESSAGE);
+                                }
+                               else{
+                                       JOptionPane.showMessageDialog(null, "start limpiar");
+                                    }        
+                        }                                             
+                    }
+                } 
+                 else {
+                         JOptionPane.showInputDialog(null, "Error numero Max de Habitacion es :5");
+                         }
+                     cargaActual=RestCharge;
+                      limpiarNeedCharge=0;
+                      RestCharge=0;   
                 
                 
                 
