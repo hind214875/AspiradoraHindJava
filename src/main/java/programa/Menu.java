@@ -78,10 +78,12 @@ public class Menu implements ActionListener {
          double cargaActual;//the value of charge after cleaning
          int x=0;
          int k;
+         int c;
          double[] habPermanenteM= new double[x];//the permanent list for stocking the metros of habitacions that a user will choose, for "modo dependencias"
          String[] habPermanente= new String[x];
          String aspiraPlace="";//the place where is the aspiradora now 
          double MettersCasa=0;//thesum of how much metters the casa have 
+         String BaseDeCarga="Cocina";
            // case 1:
                                // JOptionPane.showInputDialog("by default you house have por defecto tu casa tiene\n: 1 cocina ,1 sala ,1 cuarto de baño ,2 dormitorios \n"
                 //        + "quieres cambialo " ,JOptionPane.YES_NO_OPTION );
@@ -262,12 +264,18 @@ Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va li
             case 8:
                // BASE DE CARGA
             // This indicates the robot to return to the charge base and charge the battery till it gets to 100%
-             for(int c=0;c<101;c++){
+                
+             for(c=0;c<101;c++){
                 
                  System.out.print("\n" + c +"%");
                  
              }
-            JOptionPane.showMessageDialog(null, "la carga de la batería est:100%");
+             while(c==101){
+                JOptionPane.showMessageDialog(null, "la carga de la batería est:100%");
+                 cargaEstablecida=c;
+                
+            }
+            
             
             case 9:
                    JOptionPane.showMessageDialog(null,"Quieres Salir","!",JOptionPane.WARNING_MESSAGE);

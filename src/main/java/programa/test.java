@@ -13,7 +13,7 @@ public class test {
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
          double[] habitacionsM= {25,15,3,2,4};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
-         double cargaEstablecida=4;// value charge the user enter in first opcion "configuration del sistema"
+         double cargaEstablecida=40;// value charge the user enter in first opcion "configuration del sistema"
          double limpiarNeedCharge=0;//equation to know how much charge the aspiradora losted dependce the M of the habitacion
          double cargaActual;//the value of charge after cleaning
          int x=0;
@@ -22,7 +22,7 @@ public class test {
         double[] habPermanenteM= new double[x];//the permanent list for stocking the metros of habitacions that a user will choose, for "modo dependencias"
         String[] habPermanente= new String[x]; 
         double sumLimpiarCharge=0; 
-        
+         String BaseDeCarga="Cocina";
         
        opc= JOptionPane.showInputDialog("Como Quieres Limpiar : \n" + "1.Aspiracion\n" + "2.aspiracion y fregado ? " );
        int option=Integer.parseInt(opc);
@@ -31,7 +31,7 @@ public class test {
                        + "2.aspiracion dependencias\n");  
         option=Integer.parseInt(opc);
               if(option==1){
-        cargaEstablecida=4;
+        cargaEstablecida=80;
        switch(option){
                
            case 1 : //aspiration 
@@ -46,21 +46,27 @@ public class test {
                  
                  //   for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
                              for(int m=0;m<habitacionsM.length;m++){
-                               limpiarNeedCharge=habitacionsM[m]*0.15;
-                                sumLimpiarCharge+=limpiarNeedCharge;
+                               limpiarNeedCharge=habitacionsM[m]*1.5;
+                               
                                 
-                               if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
-                                           + "aspiradora se detuvo en esta habitación" + habitacion[m] );               
-                                }
-                               JOptionPane.showMessageDialog(null, "tu" + habitacion[m] + "limpiado");  
+                                           + "aspiradora se detuvo en esta habitación" + habitacion[m] );  
+                                                                  }
+                               else  {
+                                      sumLimpiarCharge+=limpiarNeedCharge;
+                                      JOptionPane.showMessageDialog(null, "tu" + habitacion[m] + "limpiado");   
+                               }
+
                   }
-                   
-              //  }
-                      cargaActual=cargaEstablecida-sumLimpiarCharge; 
-                      JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
-                      limpiarNeedCharge=0;
-                      sumLimpiarCharge=0;
+                             cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                     JOptionPane.showMessageDialog(null, "el cargo ahora es :" + cargaActual + "%");        
+                     JOptionPane.showMessageDialog(null, "su aspiradora necesita cargarse y volverá a la base de carga para cargar");           
+                      limpiarNeedCharge=0; //initial this variable because we will need it again 
+                      while(BaseDeCarga != "Cocina"){
+                               JOptionPane.showMessageDialog(null, "su aspiradora volvere a base de cargar:" + "" + BaseDeCarga);  
+                              }
+                              
            
           }
                 else  if(option==2){
@@ -80,32 +86,26 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                            for(int j=0;j<x;j++){ 
                          
                              habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
-                             limpiarNeedCharge=habPermanenteM[i]*0.15;
-                             sumLimpiarCharge+=limpiarNeedCharge;
+                             limpiarNeedCharge=habPermanenteM[i]*1.5;
+                            
                              
                                if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
                                }
                                             
                         }
+                            sumLimpiarCharge+=limpiarNeedCharge;
                             JOptionPane.showMessageDialog(null, "tu" + habitacion[x] + "limpiado");                        
                           
                 }
                       cargaActual=cargaEstablecida-sumLimpiarCharge; 
-                      JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
+                      JOptionPane.showMessageDialog(null, "habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;
-                      sumLimpiarCharge=0;
-           
-                                                                 
+                                                   
                     }
                      
                      }
-          
-                    
-                    
-                    
-                    
-                
+                 
                 }
           
              //case 2:    
