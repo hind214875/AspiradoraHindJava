@@ -9,7 +9,7 @@ public class test {
     public static void main(String[] args) {
         
         //double NmrEstancia;
-         int i;
+         int i = 0;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
          double[] habitacionsM= {25,15,3,2,4};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
@@ -27,7 +27,7 @@ public class test {
         
        opc= JOptionPane.showInputDialog("Como Quieres Limpiar : \n" + "1.Aspiracion\n" + "2.aspiracion y fregado ? " );
        int option=Integer.parseInt(opc);
-          
+          cargaEstablecida=80;
         switch(option){   
                      
             case 1: 
@@ -35,7 +35,7 @@ public class test {
                        + "2.aspiracion dependencias\n");  
             option2=Integer.parseInt(opc2);
               if(option==1){   
-             cargaEstablecida=80;
+             
        
                
             //aspiration 
@@ -86,24 +86,26 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                         String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
                          x=Integer.parseInt(num);
    
-                      for (i=0;i<x;i++){ 
-                         String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
-                          habPermanente[x]=String.valueOf(h);
+                     // for (i=0;i<x;i++){ 
+                        
                            for(int j=0;j<x;j++){ 
+                           String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
+                         //  habPermanente[j]=String.valueOf(h);
+                           String metros=(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: ")); 
+                            habPermanenteM[j]=Double.parseDouble(metros);
                          
-                             habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
-                             limpiarNeedCharge=habPermanenteM[i]*1.5;
+                             limpiarNeedCharge=habPermanenteM[j]*1.5;
                             
                              
-                               if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
                                }
                                             
-                        }
-                            sumLimpiarCharge+=limpiarNeedCharge;
-                            JOptionPane.showMessageDialog(null, "tu" + habitacion[x] + "limpiado");                        
-                          
-                }
+                        
+                           
+                            JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
+                          }
+                       sumLimpiarCharge+=limpiarNeedCharge;
                       cargaActual=cargaEstablecida-sumLimpiarCharge; 
                       JOptionPane.showMessageDialog(null, "habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;

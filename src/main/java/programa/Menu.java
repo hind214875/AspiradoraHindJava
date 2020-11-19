@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,57 +18,8 @@ import javax.swing.JTextField;
  *
  * @author Hind
  */
-public class Menu implements ActionListener {
-     private static JLabel labelUsuario;
-    private static JTextField usuarioTexto;
-    private static JLabel labelContraseña;
-    private static JButton button;
-    private static JLabel message;
-    private static JPasswordField Contraseña;
+public class Menu  {
     
-   
-    public static void main(String[] args) {
-     JPanel panel=new JPanel();
-        JFrame frame=new JFrame();
-        
-        frame.setSize(500, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-        panel.setLayout(null);
-        
-        labelUsuario=new JLabel("Usuario");
-        labelUsuario.setBounds(10, 20, 80, 25);
-        panel.add(labelUsuario);
-        
-        usuarioTexto= new JTextField();
-        usuarioTexto.setBounds(100, 20, 165, 25);
-        panel.add(usuarioTexto);
-        
-        labelContraseña=new JLabel("contraseña");
-        labelContraseña.setBounds(10, 50, 80, 25);
-        panel.add(labelContraseña);
-        
-        Contraseña= new JPasswordField();
-        Contraseña.setBounds(100, 50, 165, 25);
-        panel.add(Contraseña);
-        
-        button=new JButton("login");
-        button.setBounds(10, 80, 80, 25);
-        panel.add(button);
-        
-         // Adding the listeners to components
-        button.addActionListener(new Aspiradora());
-        
-        message =new JLabel();
-        message.setBounds(10, 110, 300, 25);
-        panel.add(message);
-               
-        frame.setVisible(true);
-           
- 
-    //public static final int opcion = 9;
-    //ArrayList<Double> destancia = new ArrayList<Double>();//lista de valores de destancia dando por el usuario
-   
         double NmrEstancia;
          int i = 0;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
@@ -75,7 +27,7 @@ public class Menu implements ActionListener {
          double[] habitacionsM= new double[5];//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
          double cargaEstablecida=0;// value charge the user enter in first opcion "configuration del sistema"
          double limpiarNeedCharge=0;// how much charge needing for cleaning the room where is the aspiradora now
-         double cargaActual;//the value of charge after cleaning
+         double cargaActual=0;//the value of charge after cleaning
          int x=0;
          int k;
          int c;
@@ -85,11 +37,10 @@ public class Menu implements ActionListener {
          double MettersCasa=0;//thesum of how much metters the casa have 
          String BaseDeCarga="Cocina";
          double sumLimpiarCharge=0; 
-           // case 1:
-                               // JOptionPane.showInputDialog("by default you house have por defecto tu casa tiene\n: 1 cocina ,1 sala ,1 cuarto de baño ,2 dormitorios \n"
-                //        + "quieres cambialo " ,JOptionPane.YES_NO_OPTION );
-                
-                //if (){
+         double M=0;
+         double cg=0;
+           JOptionPane.showConfirmDialog(
+            frame, panel, "login", JOptionPane.OK_CANCEL_OPTION);
                     
               //JOptionPane.showConfirmDialog(null,"la primera opción tiene que ser configuracion del sistema\n" );// is obligatory to choose first option first befor anything for giving the information 
               
@@ -118,16 +69,15 @@ public class Menu implements ActionListener {
                 the program show Error msg */
                 for (k=0;k<habitacionsM.length;k++){
                      habitacionsM[k]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + (k+1) + "," + " entre 1 y 100m: "));                                   
-                    
                           while((habitacionsM[k]<1 || habitacionsM[k]>100)){ 
                            JOptionPane.showMessageDialog( null, "Entrada de medidores no válida", "ErrorMsg", JOptionPane.ERROR_MESSAGE); 
                            JOptionPane.showMessageDialog(null,"ingrese un número válido, los metros deben ingresar 1 y 100");
                             k=1; 
                           }  
                            
-                            MettersCasa+=habitacionsM[k]; //operacion para saber cuando metros en la casa        
+                            M+=habitacionsM[k]; //operacion para saber cuando metros en la casa        
                 } 
-                                               
+                 MettersCasa=M;                              
             case 2:
                // CARGA Establishes the level of the battery (between 0 and 100)
              String carga =JOptionPane.showInputDialog("Indica el nivel de carga del aspirador 0%...100%");
@@ -178,25 +128,37 @@ Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va li
                      
                 
             case 4:
-               String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
-                x=Integer.parseInt(num);
-               
-                  
-                 for (i=0;i<x;i++){ 
-                         String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
-                          habPermanente[x]=String.valueOf(h);
-                       for(int j=0;j<x;j++){ 
+                  JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
+                        + ""); 
+                    if(cargaEstablecida>3){          
+                        String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
+                         x=Integer.parseInt(num);
+   
+                     // for (i=0;i<x;i++){ 
+                        
+                           for(int j=0;j<x;j++){ 
+                           String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
+                         //  habPermanente[j]=String.valueOf(h);
+                           String metros=(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: ")); 
+                            habPermanenteM[j]=Double.parseDouble(metros);
                          
-                          habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
-                             limpiarNeedCharge=habPermanenteM[i]*0.15;
+                             limpiarNeedCharge=habPermanenteM[j]*1.5;
+                            
                              
-                               while(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
                                }
-                        }
-                                                                 
+                                            
+                        
+                           
+                            JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
+                          }
+                       sumLimpiarCharge+=limpiarNeedCharge;
+                      cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                      JOptionPane.showMessageDialog(null, "habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
+                      limpiarNeedCharge=0;
+                                                   
                     }
-                      cargaActual=limpiarNeedCharge;
                       
                 
                 
@@ -230,48 +192,51 @@ Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va li
                       RestCharge=0;
                       
             case 6:
-                        num = JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
-                x=Integer.parseInt(num);
-              if (x<5) { 
-                          String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");
-                          
-                 for (i=0;i<habitacion.length;i++){ 
-                         habPermanente[x]=String.valueOf(h);
-                       for(int j=0;j<habPermanenteM.length;j++){ 
+       /*Modo dependencias: Sólo limpia las habitaciones que se le indiquen, si tiene batería.
+En ambos modos, cada metro cuadrado de limpieza agota un 1,5% de batería. Cada vez que se limpia una habitación se actualiza el estado de la batería, para controlar si puede limpiar la siguiente habitación.
+En ningún caso, si está limpiando la casa o una dependencia, el nivel de batería no puede ser inferior al 3%, para que el robot tenga autonomía y pueda volver a su base de carga.
+*/  
+                    JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
+                        + ""); 
+                    if(cargaEstablecida>3){          
+                        String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
+                         x=Integer.parseInt(num);
+   
+                     // for (i=0;i<x;i++){ 
+                        
+                           for(int j=0;j<x;j++){ 
+                           String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
+                         //  habPermanente[j]=String.valueOf(h);
+                           String metros=(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: ")); 
+                            habPermanenteM[j]=Double.parseDouble(metros);
                          
-                             habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
-                             limpiarNeedCharge=habPermanenteM[j]*2.25;
-                             RestCharge=cargaEstablecida-limpiarNeedCharge;
+                             limpiarNeedCharge=habPermanenteM[j]*1.5;
+                            
                              
                                if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
                                }
-                                else if(RestCharge<=3){
-                                       JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga es menos de 3%",JOptionPane.ERROR_MESSAGE);
-                                }
-                               else{
-                                       JOptionPane.showMessageDialog(null, "start limpiar");
-                                    }        
-                        }                                             
-                    }
-                } 
-                 else {
-                         JOptionPane.showInputDialog(null, "Error numero Max de Habitacion es :5");
-                         }
-                     cargaActual=RestCharge;
+                                            
+                        
+                           
+                            JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
+                          }
+                       sumLimpiarCharge+=limpiarNeedCharge;
+                      cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                      JOptionPane.showMessageDialog(null, "habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;
-                      RestCharge=0;   
-                
+                                                   
+                    }
+                     cg=cargaActual;
                 
                 
             case 7://estado general\n" +//This option has to show:
                      //current date and time 
                      //level of battery,place where the robot is located,rooms and m^2 of the house
-               
-               DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
-               String formattedDate = formatter.format(LocalDate.now());
-               JOptionPane.showInternalMessageDialog(null, "la fecha y hora ahora es:" + formattedDate + "\n" + "y el nivel de batería ahora es:" + RestCharge
-               + "la aspiradora en :\n" + aspiraPlace +"y tienes:\n" + habitacion + "tu casa tiene:\n" + MettersCasa);
+               String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
+
+               JOptionPane.showInternalMessageDialog(null, "la fecha y hora ahora es:\n" + timeStamp + " \n" + "  el nivel de batería ahora es:\n" + " " + cg
+               + "\n" +"la aspiradora en :\n" + BaseDeCarga + "\n " + "y tienes:\n" + "Cocina ,Baño ,salón ,dormitorio1 ,dormitorio2"+ "\n " + "tu casa tiene:\n" + MettersCasa);
                 
            
             case 8:

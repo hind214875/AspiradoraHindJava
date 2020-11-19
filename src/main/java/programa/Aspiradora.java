@@ -71,21 +71,7 @@ public class Aspiradora implements ActionListener {
         
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-       String user=usuarioTexto.getText();
-       String password=Contraseña.getText();
-       
-       if (user.equals("Admin") && password.equals("Admin")){
-           
-                     message.setText("Login Successfuly");
-       }else {
-         message.setText(" Invalid user.. ");
-      }
-           
-               
-               }
+    
        
   
   
