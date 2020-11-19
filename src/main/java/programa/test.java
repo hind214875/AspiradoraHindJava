@@ -108,7 +108,7 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                 
                 }
           
-             case 2:    
+             //case 2:    
                    
                 }
         }
