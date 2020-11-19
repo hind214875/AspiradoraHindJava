@@ -44,19 +44,19 @@ public class test {
                         + ""); 
                 if(cargaEstablecida>3){
                  
-                    for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
+                 //   for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
                              for(int m=0;m<habitacionsM.length;m++){
                                limpiarNeedCharge=habitacionsM[m]*0.15;
                                 sumLimpiarCharge+=limpiarNeedCharge;
                                 
                                if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
-                                           + "aspiradora se detuvo en esta habitación" + habitacion[j] );               
+                                           + "aspiradora se detuvo en esta habitación" + habitacion[m] );               
                                 }
+                               JOptionPane.showMessageDialog(null, "tu" + habitacion[m] + "limpiado");  
                   }
-                          JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
-                          
-                }
+                   
+              //  }
                       cargaActual=cargaEstablecida-sumLimpiarCharge; 
                       JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;
@@ -118,7 +118,7 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
    
       }
     
-    }
+    //}
         
         
         
