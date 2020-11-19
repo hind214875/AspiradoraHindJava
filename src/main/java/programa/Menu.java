@@ -84,6 +84,7 @@ public class Menu implements ActionListener {
          String aspiraPlace="";//the place where is the aspiradora now 
          double MettersCasa=0;//thesum of how much metters the casa have 
          String BaseDeCarga="Cocina";
+         double sumLimpiarCharge=0; 
            // case 1:
                                // JOptionPane.showInputDialog("by default you house have por defecto tu casa tiene\n: 1 cocina ,1 sala ,1 cuarto de baño ,2 dormitorios \n"
                 //        + "quieres cambialo " ,JOptionPane.YES_NO_OPTION );
@@ -146,22 +147,34 @@ Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va li
               Si al entrar en una habitación no le llega la batería para poder completarla entonces la aspiradora se para
               e informa al usuario que no puede terminar y también informa de las dependencias que ha podido limpiar. */  
                    
-              for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
-                        
-                          for(int m=0;m<habitacionsM.length;m++){
-                               limpiarNeedCharge=habitacionsM[m]*0.15;
-                               while(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
-                                   JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
+            if(cargaEstablecida>3){
+                 
+                 //   for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
+                             for(int m=0;m<habitacionsM.length;m++){
+                               limpiarNeedCharge=habitacionsM[m]*1.5;
+                               
+                                
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                                   JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
+                                           + "aspiradora se detuvo en esta habitación" + habitacion[m] );  
+                                                                  }
+                               else  {
+                                      sumLimpiarCharge+=limpiarNeedCharge;
+                                      JOptionPane.showMessageDialog(null, "tu" + "" + habitacion[m] + "" + "limpiado");   
                                }
+
+                  }
+                             cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                     JOptionPane.showMessageDialog(null, "el cargo ahora es :" + cargaActual + "%");        
+                     JOptionPane.showMessageDialog(null, "su aspiradora necesita cargarse y volverá a la base de carga para cargar");           
+                      limpiarNeedCharge=0; //initial this variable because we will need it again 
+                      while(BaseDeCarga != "Cocina"){
+                               JOptionPane.showMessageDialog(null, "su aspiradora volvere a base de cargar:" + "" + BaseDeCarga);  
+                              }
                               
-                          }
-                          
-                          cargaActual=cargaEstablecida-limpiarNeedCharge;
-                         JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");  
-                      }
-              
-                      cargaActual=0;
-                      limpiarNeedCharge=0;
+           }
+                
+        
                      
                 
             case 4:

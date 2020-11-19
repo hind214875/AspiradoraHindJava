@@ -19,6 +19,7 @@ public class test {
          int x=0;
          String cas;
          String opc;
+         int option2=0;
         double[] habPermanenteM= new double[x];//the permanent list for stocking the metros of habitacions that a user will choose, for "modo dependencias"
         String[] habPermanente= new String[x]; 
         double sumLimpiarCharge=0; 
@@ -26,15 +27,18 @@ public class test {
         
        opc= JOptionPane.showInputDialog("Como Quieres Limpiar : \n" + "1.Aspiracion\n" + "2.aspiracion y fregado ? " );
        int option=Integer.parseInt(opc);
-      if(option==1){
-        opc=JOptionPane.showInputDialog(null, "Asipacion tiene 2 modos elige uno: \n" + "1.aspiracion modo completo\n" 
+          
+        switch(option){   
+                     
+            case 1: 
+           /*String opc2=JOptionPane.showInputDialog(null, "1.aspiracion modo completo\n" 
                        + "2.aspiracion dependencias\n");  
-        option=Integer.parseInt(opc);
-              if(option==1){
-        cargaEstablecida=80;
-       switch(option){
+            option2=Integer.parseInt(opc2);
+              if(option==1){   
+             cargaEstablecida=80;
+       
                
-           case 1 : //aspiration 
+            //aspiration 
                //there is 2 modes, the user have to choose the mode want and inside every mode there also 2 type also 
                //when the user choose mode aspiracion and mode complito en aspiration then i do 
               //loops for the 2 listes and inside i count how much charge aspiradora need every time enter in a new room 
@@ -55,7 +59,7 @@ public class test {
                                                                   }
                                else  {
                                       sumLimpiarCharge+=limpiarNeedCharge;
-                                      JOptionPane.showMessageDialog(null, "tu" + habitacion[m] + "limpiado");   
+                                      JOptionPane.showMessageDialog(null, "tu" + "" + habitacion[m] + "" + "limpiado");   
                                }
 
                   }
@@ -67,13 +71,15 @@ public class test {
                                JOptionPane.showMessageDialog(null, "su aspiradora volvere a base de cargar:" + "" + BaseDeCarga);  
                               }
                               
-           
-          }
-                else  if(option==2){
+           }
+                
+        }*/
+               // else  if(option2==2){
             /*Modo dependencias: Sólo limpia las habitaciones que se le indiquen, si tiene batería.
 En ambos modos, cada metro cuadrado de limpieza agota un 1,5% de batería. Cada vez que se limpia una habitación se actualiza el estado de la batería, para controlar si puede limpiar la siguiente habitación.
 En ningún caso, si está limpiando la casa o una dependencia, el nivel de batería no puede ser inferior al 3%, para que el robot tenga autonomía y pueda volver a su base de carga.
-*/
+*/  
+           
                     JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
                         + ""); 
                     if(cargaEstablecida>3){          
@@ -105,18 +111,18 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                     }
                      
                      }
-                 
+                 } 
                 }
-          
+           // }
              //case 2:    
                    
-                }
-        }
+                
+        
        
-    }
+    
       
    
-      }
+      
     
     //}
         
