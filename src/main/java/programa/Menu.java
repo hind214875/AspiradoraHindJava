@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author Hind
  */
-public class Menu implements ActionListener{
+public class Menu implements ActionListener {
      private static JLabel labelUsuario;
     private static JTextField usuarioTexto;
     private static JLabel labelContraseña;
@@ -64,9 +64,7 @@ public class Menu implements ActionListener{
                
         frame.setVisible(true);
            
-    
-   
-    
+ 
     //public static final int opcion = 9;
     //ArrayList<Double> destancia = new ArrayList<Double>();//lista de valores de destancia dando por el usuario
    

@@ -12,22 +12,25 @@ public class test {
          int i;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
-         double[] habitacionsM= {5,5,3,2,4};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
-         double cargaEstablecida=100;// value charge the user enter in first opcion "configuration del sistema"
+         double[] habitacionsM= {25,15,3,2,4};//declare list of 5 intereges "the metters that the user will introduce for our 5habitaciones"
+         double cargaEstablecida=4;// value charge the user enter in first opcion "configuration del sistema"
          double limpiarNeedCharge=0;//equation to know how much charge the aspiradora losted dependce the M of the habitacion
          double cargaActual;//the value of charge after cleaning
          int x=0;
          String cas;
          String opc;
         double[] habPermanenteM= new double[x];//the permanent list for stocking the metros of habitacions that a user will choose, for "modo dependencias"
-        String[] habPermanente= new String[x];  
+        String[] habPermanente= new String[x]; 
+        double sumLimpiarCharge=0; 
         
         
        opc= JOptionPane.showInputDialog("Como Quieres Limpiar : \n" + "1.Aspiracion\n" + "2.aspiracion y fregado ? " );
        int option=Integer.parseInt(opc);
-     
+      if(option==1){
         opc=JOptionPane.showInputDialog(null, "Asipacion tiene 2 modos elige uno: \n" + "1.aspiracion modo completo\n" 
                        + "2.aspiracion dependencias\n");  
+        option=Integer.parseInt(opc);
+              if(option==1){
         cargaEstablecida=4;
        switch(option){
                
@@ -39,37 +42,83 @@ public class test {
                //more > bigger than the charge she have then i show error msg if else i show the habitacion cleaned
                 JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo completo"
                         + ""); 
-                while(cargaEstablecida>3){
+                if(cargaEstablecida>3){
                  
                     for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
                              for(int m=0;m<habitacionsM.length;m++){
                                limpiarNeedCharge=habitacionsM[m]*0.15;
-                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                                sumLimpiarCharge+=limpiarNeedCharge;
+                                
+                               if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
                                    JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
                                            + "aspiradora se detuvo en esta habitación" + habitacion[j] );               
                                 }
-                               else{
-                                  JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
-                                   }
-                        
-                      }
-                           limpiarNeedCharge+=limpiarNeedCharge;
+                  }
+                          JOptionPane.showMessageDialog(null, "tu" + habitacion[j] + "limpiado");                        
+                          
                 }
-                      cargaActual=cargaEstablecida-limpiarNeedCharge; 
+                      cargaActual=cargaEstablecida-sumLimpiarCharge; 
                       JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
                       limpiarNeedCharge=0;
-                      
-                      
-                 
-              
+                      sumLimpiarCharge=0;
            
           }
-        
-        
-        
-        
-        
-        
+                else  if(option==2){
+            /*Modo dependencias: Sólo limpia las habitaciones que se le indiquen, si tiene batería.
+En ambos modos, cada metro cuadrado de limpieza agota un 1,5% de batería. Cada vez que se limpia una habitación se actualiza el estado de la batería, para controlar si puede limpiar la siguiente habitación.
+En ningún caso, si está limpiando la casa o una dependencia, el nivel de batería no puede ser inferior al 3%, para que el robot tenga autonomía y pueda volver a su base de carga.
+*/
+                    JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
+                        + ""); 
+                    if(cargaEstablecida>3){          
+                        String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
+                         x=Integer.parseInt(num);
+   
+                      for (i=0;i<x;i++){ 
+                         String h= JOptionPane.showInputDialog("introduzca el habitaciones que quieres limpiar:");//introduce the habitation you want to clean 
+                          habPermanente[x]=String.valueOf(h);
+                           for(int j=0;j<x;j++){ 
+                         
+                             habPermanenteM[x]=Double.parseDouble(JOptionPane.showInputDialog("introduzca el número de Metros de habitación \n" + habPermanente[i] + " entre 1 y 100m: "));                  
+                             limpiarNeedCharge=habPermanenteM[i]*0.15;
+                             sumLimpiarCharge+=limpiarNeedCharge;
+                             
+                               if(sumLimpiarCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                                   JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
+                               }
+                                            
+                        }
+                            JOptionPane.showMessageDialog(null, "tu" + habitacion[x] + "limpiado");                        
+                          
+                }
+                      cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                      JOptionPane.showMessageDialog(null, "todo las habitaciones limpiado y el cargo ahora es :" + cargaActual + "%");
+                      limpiarNeedCharge=0;
+                      sumLimpiarCharge=0;
+           
+                                                                 
+                    }
+                     
+                     }
+          
+                    
+                    
+                    
+                    
+                
+                }
+          
+             case 2:    
+                   
+                }
+        }
+       
+    }
+      
+   
+      }
+    
+    }
         
         
         
@@ -156,8 +205,7 @@ public class test {
        
        
        
-   }
+  
 
-    }
-    }
+   
 
