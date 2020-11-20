@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package programa;
 
 import java.awt.event.ActionEvent;
@@ -5,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -13,10 +19,9 @@ import javax.swing.JTextField;
  *
  * @author Hind
  */
-
-public class Aspiradora implements ActionListener {
+public class Login implements ActionListener{
     
-    private static JLabel labelUsuario;
+     private static JLabel labelUsuario;
     private static JTextField usuarioTexto;
     private static JLabel labelContraseña;
     private static JButton button;
@@ -25,7 +30,7 @@ public class Aspiradora implements ActionListener {
     
    
     public static void main(String[] args) {
-        JPanel panel=new JPanel();
+     JPanel panel=new JPanel();
         JFrame frame=new JFrame();
         
         frame.setSize(500, 300);
@@ -54,27 +59,33 @@ public class Aspiradora implements ActionListener {
         panel.add(button);
         
          // Adding the listeners to components
-        button.addActionListener(new Aspiradora());
+        button.addActionListener(new Login());
         
         message =new JLabel();
         message.setBounds(10, 110, 300, 25);
         panel.add(message);
-        
-        
-        
+               
         frame.setVisible(true);
+ 
+                   
+  JOptionPane.showConfirmDialog( frame, panel, "login", JOptionPane.OK_CANCEL_OPTION);
+}
+     @Override
+    public void actionPerformed(ActionEvent e) {
         
-        
-        
-        
-      
-        
+       String user=usuarioTexto.getText();
+       String password=Contraseña.getText();
+       
+       if (user.equals("Admin") && password.equals("Admin")){
+           
+                     message.setText("Login Successfuly");
+       }else {
+         message.setText(" Invalid user.. ");
+      }
+           
+               
+               }
+    
     }
 
-    
-       
-  
-  
-    
-    
-}
+

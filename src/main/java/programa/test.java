@@ -31,6 +31,36 @@ public class test {
         switch(option){   
                      
             case 1: 
+                //Exactly the same but this time the battery drained by m^2 is 2.25%
+                   if(cargaEstablecida>3){
+                 
+                 //   for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
+                             for(int m=0;m<habitacionsM.length;m++){
+                               limpiarNeedCharge=habitacionsM[m]*2.25;
+                               
+                                
+                               if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > of the charge the aspiradora have then we show error msg
+                                   JOptionPane.showMessageDialog(null, "no se puede limpiar porque la carga no es suficiente" + ","
+                                           + "aspiradora se detuvo en esta habitación" + habitacion[m] );  
+                                                                  }
+                               else  {
+                                      sumLimpiarCharge+=limpiarNeedCharge;
+                                      JOptionPane.showMessageDialog(null, "tu" + "" + habitacion[m] + "" + "limpiado");   
+                               }
+
+                  }
+                             cargaActual=cargaEstablecida-sumLimpiarCharge; 
+                     JOptionPane.showMessageDialog(null, "el cargo ahora es :" + cargaActual + "%");        
+                     JOptionPane.showMessageDialog(null, "su aspiradora necesita cargarse y volverá a la base de carga para cargar");           
+                      limpiarNeedCharge=0; //initial this variable because we will need it again 
+                      while(BaseDeCarga != "Cocina"){
+                               JOptionPane.showMessageDialog(null, "su aspiradora volvere a base de cargar:" + "" + BaseDeCarga);  
+                              }
+                              
+           }
+                
+             }
+         
            /*String opc2=JOptionPane.showInputDialog(null, "1.aspiracion modo completo\n" 
                        + "2.aspiracion dependencias\n");  
             option2=Integer.parseInt(opc2);
@@ -80,7 +110,7 @@ En ambos modos, cada metro cuadrado de limpieza agota un 1,5% de batería. Cada 
 En ningún caso, si está limpiando la casa o una dependencia, el nivel de batería no puede ser inferior al 3%, para que el robot tenga autonomía y pueda volver a su base de carga.
 */  
            
-                    JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
+            /*        JOptionPane.showMessageDialog(null,"you choose Aspiracion ,modo Dependencias"
                         + ""); 
                     if(cargaEstablecida>3){          
                         String num= JOptionPane.showInputDialog("introduzca el numero de habitaciones quieres limpiar:");
@@ -115,7 +145,7 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                      }
                  } 
                 }
-           // }
+           // }*/
              //case 2:    
                    
                 
@@ -211,7 +241,8 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                       limpiarNeedCharge=0;
                       RestCharge=0;    */
        
-       
+        }
+     } 
        
   
 

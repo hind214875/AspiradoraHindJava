@@ -19,8 +19,8 @@ import javax.swing.JTextField;
  * @author Hind
  */
 public class Menu  {
-    
-        double NmrEstancia;
+    public static void main(String[] args) {
+         double NmrEstancia;
          int i = 0;
          double RestCharge=0;//equation to count how much charge will rest in asperadora after limpiar
          String[] habitacion = {"Cocina", "Baño", "salón", "dormitorio1", "dormitorio2"};
@@ -39,13 +39,13 @@ public class Menu  {
          double sumLimpiarCharge=0; 
          double M=0;
          double cg=0;
-           JOptionPane.showConfirmDialog(
-            frame, panel, "login", JOptionPane.OK_CANCEL_OPTION);
-                    
-              //JOptionPane.showConfirmDialog(null,"la primera opción tiene que ser configuracion del sistema\n" );// is obligatory to choose first option first befor anything for giving the information 
+         
+         // the user have to login first then the program show the menu ,login should be "login" and password "password"
+         String user=JOptionPane.showInputDialog(null, "Login");
+         String password=JOptionPane.showInputDialog(null, "Password");
+         while("login".equals(user) && "password".equals(password)){ 
+             JOptionPane.showMessageDialog(null, "Login ok "); //if it the user enter the right value of user and password then he get msg that he login and he can see the menu
               
-                  //}
-            
                //create menu 
         int opcion=0; String op="";
         op=JOptionPane.showInputDialog("Seleccionar una Opcion: \n" + 
@@ -167,29 +167,7 @@ Modo completo: En este modo, la aspiradora limpia el piso entero. El robot va li
                 /*The vacuum cleaner cleans the whole house. The robot is going to clean rooms in function of the battery 
                 remaining. If the robot enters a room and it doesn’t have sufficient battery to clean it the robot stops
                 and informs the user that it can’t finish and informs of which rooms it has cleaned so far.
-*/         while(cargaEstablecida>3){
-                for(int j=0;j<habitacion.length;j++){ //loop for the moving in the rooms if there is charge
-                        
-                        for(int m=0;m<habitacionsM.length;m++){ //loop for habitaciones metters
-                                limpiarNeedCharge=habitacionsM[m]*2.25;
-                                RestCharge=cargaEstablecida-limpiarNeedCharge;
-                                
-                             if(limpiarNeedCharge>cargaEstablecida){//when the charge we need to clean the room > the charge the aspiradora have then we show error msg
-                                   JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga no es suficiente",JOptionPane.ERROR_MESSAGE);
-                               } 
-                        }
-                                
-                       JOptionPane.showInputDialog(null, "no se puede limpiar porque la carga es menos de 3%",JOptionPane.ERROR_MESSAGE);
-                               habPermanente[j]=String.valueOf(j);
-                               aspiraPlace= habPermanente[j];
-                                }
-          
-                    } 
-                //limpiarNeedCharge+=limpiarNeedCharge;
-                
-                      cargaActual=RestCharge;
-                      limpiarNeedCharge=0;
-                      RestCharge=0;
+*/      
                       
             case 6:
        /*Modo dependencias: Sólo limpia las habitaciones que se le indiquen, si tiene batería.
@@ -259,22 +237,20 @@ En ningún caso, si está limpiando la casa o una dependencia, el nivel de bater
                    JOptionPane.showMessageDialog(null,"Quieres Salir","!",JOptionPane.WARNING_MESSAGE);
                                System.exit(0);
         }
-            }  
-          @Override
-    public void actionPerformed(ActionEvent e) {
+         }
+         
+             JOptionPane.showMessageDialog(null, "Login Failed");
+              
+         
+           }       
+              
+    }
+  
+              
+         
+
         
-       String user=usuarioTexto.getText();
-       String password=Contraseña.getText();
-       
-       if (user.equals("Admin") && password.equals("Admin")){
-           
-                     message.setText("Login Successfuly");
-       }else {
-         message.setText(" Invalid user.. ");
-      }           
-               }
         
-       }  
     
 
 
